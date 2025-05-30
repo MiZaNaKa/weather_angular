@@ -3,94 +3,28 @@
     <hr class="my-4 border-gray-300 w-1/2 mx-auto" />
 </div>
 
-<!-- Search Box -->
+
 <div class="bg-gradient-to-r from-orange-400 to-orange-500 py-20 flex justify-center mx-20">
-    <!-- Search Input and Button -->
     <div class="flex flex-col items-center space-y-4 w-[75vw] max-w-3xl">
         <div class="flex items-center w-full rounded-full overflow-hidden shadow-lg">
-            <input type="text" (input)="onUsernameChange($event)"
+            <input type="text" (input)="onCityChange($event)"
                 class="w-full px-6 py-3 text-lg rounded-l-full outline-none" />
-            <button (click)="SearchWeather()"
+            <button (click)="getWeather()"
                 class="bg-orange-600 hover:bg-orange-700 text-white px-6 py-3 rounded-r-full text-sm flex items-center">
                 <span class="mr-2">❓</span> Search
             </button>
         </div>
 
-        <!-- Loading Message -->
-        <p class="text-lg text-white" *ngIf="loading">Loading...</p>
-        <p class="text-lg text-white" *ngIf="error">{{error}}</p>
+        
+        <app-loading [loading]="loading"></app-loading>
+        <app-error [message]="error"></app-error>
+       
     </div>
 </div>
 
-
-
-<!-- Weather Result -->
-<div  *ngIf="weatherData" class="text-center py-10">
-    <hr class="my-4 border-gray-300 w-1/2 mx-auto" />
-
-    <div class="flex justify-center items-center space-x-3">
-        <img [src]="getIconUrl()" alt="weather icon" class="w-10 h-10" />
-        <div class="text-lg">
-            <strong class="text-orange-600">{{ weatherData.name }}, {{ weatherData.sys.country }}</strong>
-            <span class="ml-2">{{ getFlagEmoji(weatherData.sys.country) }}</span>
-            <em class="text-gray-700"> {{ weatherData.weather[0].description }} </em>
-        </div>
-    </div>
-
-    <p class="mt-2 text-sm text-gray-700">
-        <span class="bg-gray-800 text-white px-2 py-1 rounded-full text-xs">
-            {{ weatherData.main.temp }}°C
-        </span>
-        temperature from {{ weatherData.main.temp_min }} to {{ weatherData.main.temp_max }} °C,
-        wind {{ weatherData.wind.speed }} m/s,
-        clouds {{ weatherData.clouds.all }} %,
-        {{ weatherData.main.pressure }} hpa
-    </p>
-
-    <p class="mt-2 text-orange-600 text-sm">
-        Geo coords [{{ weatherData.coord.lat }}, {{ weatherData.coord.lon }}]
-    </p>
-</div>
+<app-weather-details *ngIf="!loading && !error" [weatherData]="weatherData"></app-weather-details>
 
 
 
 
 
-
-
-
-
-
-
-
-<div class="row">
-    <!-- <div class="col-3">
-        <div (click)="getUsers()" class="btn btn-success">
-            Load User
-        </div>
-    </div>
-
-    <button (click)="getUsers()" type="submit" class="bg-amber-500 px-4 rounded border-amber-900 cursor-pointer mt-2">Add Task</button>
-
-    <br/>
-
-    <input type="text" (input)="onUsernameChange($event)" />
-    <p>Value: {{ username }}</p>
-
-    <br />
-    <button (click)="SearchWeather()" type="submit" class="bg-amber-500 px-4 rounded border-amber-900 cursor-pointer mt-2">
-        Search</button>
-    
-    <br />
-
-    <p>result</p> -->
-
-    <div class="weather-card" *ngIf="weatherList && weatherList.main">
-        <h2>{{ weatherList.name }}</h2>
-        <p>Temperature: {{ weatherList.main.temp }} °C</p>
-        <p>Condition: {{ weatherList.weather[0].description }}</p>
-    </div>
-
-
-    
-</div>

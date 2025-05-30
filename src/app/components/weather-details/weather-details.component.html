@@ -1,0 +1,32 @@
+<div *ngIf="weatherData" class="text-center py-10">
+    <hr class="my-4 border-gray-300 w-1/2 mx-auto" />
+
+    <div class="flex justify-center items-center space-x-3">
+        <img [src]="getIconUrl()" alt="weather icon" class="w-10 h-10" />
+        <div class="text-lg">
+            <strong class="text-orange-600">
+                {{ weatherData.name }}, {{ weatherData.sys.country }}
+            </strong>
+            <span class="ml-2">
+                {{ getFlagEmoji(weatherData.sys.country) }}
+            </span>
+            <em class="text-gray-700">
+                {{ weatherData.weather[0].description }}
+            </em>
+        </div>
+    </div>
+
+    <p class="mt-2 text-sm text-gray-700">
+        <span class="bg-gray-800 text-white px-2 py-1 rounded-full text-xs">
+            {{ weatherData.main.temp }}°C
+        </span>
+        temperature from {{ weatherData.main.temp_min }} to
+        {{ weatherData.main.temp_max }} °C, wind {{ weatherData.wind.speed }}
+        m/s, clouds {{ weatherData.clouds.all }} %, {{ weatherData.main.pressure }}
+        hpa
+    </p>
+
+    <p class="mt-2 text-orange-600 text-sm">
+        Geo coords [{{ weatherData.coord.lat }}, {{ weatherData.coord.lon }}]
+    </p>
+</div>
