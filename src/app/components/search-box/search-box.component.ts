@@ -6,17 +6,17 @@ import { LoadingComponent } from '../loading/loading.component';
 import { WeatherDetailsComponent } from '../weather-details/weather-details.component';
 
 @Component({
-  selector: 'app-api-services',
-  imports: [NgIf,ErrorComponent,LoadingComponent,WeatherDetailsComponent],
-  templateUrl: './api-services.component.html',
-  styleUrl: './api-services.component.css'
+  selector: 'app-search-box',
+  imports: [NgIf, ErrorComponent, LoadingComponent, WeatherDetailsComponent],
+  templateUrl: './search-box.component.html',
+  styleUrl: './search-box.component.css'
 })
-export class ApiServicesComponent {
+export class SearchBoxComponent {
   city = '';
   weatherData: any;
-  loading=false;
-  error="";
-  constructor(private http:HttpClient){
+  loading = false;
+  error = "";
+  constructor(private http: HttpClient) {
 
   }
 
@@ -28,7 +28,7 @@ export class ApiServicesComponent {
       next: (result: any) => {
         this.weatherData = result;
         this.loading = false,
-        this.error = ""
+          this.error = ""
       },
       error: (err) => {
         console.error('Error fetching weather:', err);
@@ -52,6 +52,6 @@ export class ApiServicesComponent {
 
   onCityChange(event: Event) {
     const value = (event.target as HTMLInputElement).value;
-    this.city=value
+    this.city = value
   }
 }

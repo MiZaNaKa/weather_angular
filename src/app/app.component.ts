@@ -1,11 +1,11 @@
 import { Component, } from '@angular/core';
-import { ApiServicesComponent } from './components/api-services/api-services.component';
 import { HeaderComponent } from './components/header/header.component';
+import { SearchBoxComponent } from './components/search-box/search-box.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [ ApiServicesComponent,HeaderComponent],
+  imports: [ SearchBoxComponent,HeaderComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

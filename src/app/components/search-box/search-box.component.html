@@ -15,16 +15,11 @@
             </button>
         </div>
 
-        
+
         <app-loading [loading]="loading"></app-loading>
         <app-error [message]="error"></app-error>
-       
+
     </div>
 </div>
 
 <app-weather-details *ngIf="!loading && !error" [weatherData]="weatherData"></app-weather-details>
-
-
-
-
-
